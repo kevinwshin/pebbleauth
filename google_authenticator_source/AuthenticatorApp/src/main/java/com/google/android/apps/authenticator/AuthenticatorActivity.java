@@ -107,7 +107,7 @@ public class AuthenticatorActivity extends TestableActivity {
   static final String ACTION_SCAN_BARCODE =
       AuthenticatorActivity.class.getName() + ".ScanBarcode";
 
-  private static final java.util.UUID PEBBLE_APP_UUID = java.util.UUID.randomUUID();
+  private static final java.util.UUID PEBBLE_APP_UUID = java.util.UUID.fromString("4c742b0c-673f-4914-86ea-1506bbfdebf4");
 
   private View mContentNoAccounts;
   private View mContentAccountsPresent;
