@@ -107,8 +107,6 @@ public class AuthenticatorActivity extends TestableActivity {
   static final String ACTION_SCAN_BARCODE =
       AuthenticatorActivity.class.getName() + ".ScanBarcode";
 
-  private static final java.util.UUID PEBBLE_APP_UUID = java.util.UUID.fromString("4c742b0c-673f-4914-86ea-1506bbfdebf4");
-
   private View mContentNoAccounts;
   private View mContentAccountsPresent;
   private TextView mEnterPinPrompt;
@@ -280,24 +278,6 @@ public class AuthenticatorActivity extends TestableActivity {
       importDataFromOldAppIfNecessary();
       handleIntent(getIntent());
     }
-
-    //start pebblelistener code
-    //warning: this is going to be shitty
-    PebbleKit.registerReceivedDataHandler(this, new PebbleKit.PebbleDataReceiver(PEBBLE_APP_UUID) {
-        @Override
-        public void receiveData(final Context context, final int transactionId, final PebbleDictionary data) {
-            //give ack of data
-            PebbleKit.sendAckToPebble(getApplicationContext(), transactionId);
-
-            //craft response data
-            PebbleDictionary data = PebbleDictionary();
-            for(int i = 0; i < data.length; ++i) {
-                data.addString(i * 2, mUsers[i].pin);
-                data.addString(i * 2 + 1, mUsers[i].user);
-            }
-            PebbleKit.sendDataToPebble(getApplicationContext(), PEBBLE_APP_UUID, data);
-        }
-    });
   }
 
   /**
