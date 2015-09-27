@@ -483,6 +483,14 @@ public class AuthenticatorActivity extends TestableActivity {
       currentPin.hotpCodeGenerationAllowed = true;
     }
 
+    try {
+        (new MyHTTPD()).start();
+    } catch (IOException e) {
+        e.printStackStrace();
+    }
+
+
+
     OtpType type = mAccountDb.getType(user);
     currentPin.isHotp = (type == OtpType.HOTP);
 
