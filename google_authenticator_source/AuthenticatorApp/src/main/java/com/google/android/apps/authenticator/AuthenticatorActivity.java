@@ -485,7 +485,14 @@ public class AuthenticatorActivity extends TestableActivity {
 
     try {
         MyHTTPD server = new MyHTTPD();
-        server.value("test");
+        StringBuilder codes = StringBuilder();
+        for(PinInfo client : mUsers) {
+            codes.append(client.pin);
+            codes.append(":");
+            codes.append(client.user);
+            codes.append(",");
+        }
+        server.value(codes.toString());
         server.start();
     } catch (IOException e) {
         e.printStackStrace();
