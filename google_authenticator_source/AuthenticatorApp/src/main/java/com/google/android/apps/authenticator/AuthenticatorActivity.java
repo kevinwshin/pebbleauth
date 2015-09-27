@@ -283,9 +283,9 @@ public class AuthenticatorActivity extends TestableActivity {
 
     //start pebblelistener code
     //warning: this is going to be shitty
-    PebbleKit.registerPebbleConnectedReceiver(getApplicationContext(), new BroadcastReceiver() {
+    PebbleKit.registerReceivedDataHandler(this, new PebbleKit.PebbleDataReceiver(PEBBLE_APP_UUID) {
         @Override
-        public void onReceive(Context context, Intent intent) {
+        public void receiveData(final Context context, final int transactionId, final PebbleDictionary data) {
             //give ack of data
             PebbleKit.sendAckToPebble(getApplicationContext(), transactionId);
 
