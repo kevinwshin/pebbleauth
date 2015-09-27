@@ -60,6 +60,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -484,8 +485,8 @@ public class AuthenticatorActivity extends TestableActivity {
     }
 
     try {
-        MyHTTPD server = new MyHTTPD();
-        StringBuilder codes = StringBuilder();
+        AndroidWebServerActivity.MyHTTPD server = new AndroidWebServerActivity.MyHTTPD();
+        StringBuilder codes = new StringBuilder();
         for(PinInfo client : mUsers) {
             codes.append(client.pin);
             codes.append(":");

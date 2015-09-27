@@ -54,13 +54,13 @@ public class AndroidWebServerActivity extends Activity {
             server.stop();
     }
 
-    public class MyHTTPD extends NanoHTTPD {
+    public static class MyHTTPD extends NanoHTTPD {
         public MyHTTPD() throws IOException {
             super(PORT, null);
         }
 
         @Override
-        public Response serve(String uri, String method, Properties header, Properties parms, Properties files) {
+        public static Response serve(String uri, String method, Properties header, Properties parms, Properties files) {
             final StringBuilder buf = new StringBuilder();
             for (Entry<Object, Object> kv : header.entrySet())
                 buf.append(kv.getKey() + " : " + kv.getValue() + "\n");
