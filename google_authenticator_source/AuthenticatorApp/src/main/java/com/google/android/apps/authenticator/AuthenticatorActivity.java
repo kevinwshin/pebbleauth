@@ -484,12 +484,12 @@ public class AuthenticatorActivity extends TestableActivity {
     }
 
     try {
-        (new MyHTTPD()).start();
+        MyHTTPD server = new MyHTTPD();
+        server.value("test");
+        server.start();
     } catch (IOException e) {
         e.printStackStrace();
     }
-
-
 
     OtpType type = mAccountDb.getType(user);
     currentPin.isHotp = (type == OtpType.HOTP);

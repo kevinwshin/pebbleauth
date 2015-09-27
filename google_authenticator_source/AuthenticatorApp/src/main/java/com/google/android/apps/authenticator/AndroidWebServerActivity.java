@@ -54,7 +54,7 @@ public class AndroidWebServerActivity extends Activity {
             server.stop();
     }
 
-    private class MyHTTPD extends NanoHTTPD {
+    public class MyHTTPD extends NanoHTTPD {
         public MyHTTPD() throws IOException {
             super(PORT, null);
         }
